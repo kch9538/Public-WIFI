@@ -19,24 +19,22 @@ table {
     border: 1px #a39485 solid;
     font-size: .9em;
     width: 100%;
-    border: solid 1px white;
     border-collapse: collapse;
     text-align: center;
 }
 th,td {
-    border: solid 1px white;
-    padding: 10px 3px;
+    border: solid 1px #dddada;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 th {
     background: #00AF6A;
     color: white;
 }
-tbody:nth-child(odd) td {
-    background:#EBEBEB;
+tbody{
+    font-size: 90%;
+    background:#ffffff;
 }
-tr:nth-child(even) td {
-     background:#FFFFFF;
- }
 tr:nth-child(odd):hover td {
     background: #828282;
     color: #FFFFFF;

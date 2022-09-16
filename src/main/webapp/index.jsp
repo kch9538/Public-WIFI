@@ -7,6 +7,7 @@
 </head>
 <body>
 <script = "javascript">
+//위치정보 구하기
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
