@@ -10,8 +10,8 @@
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                document.getElementById("lat").value = position.coords.latitude;
-                document.getElementById("lnt").value = position.coords.longitude;
+                document.getElementById("lnt").value = position.coords.latitude;
+                document.getElementById("lat").value = position.coords.longitude;
             }, function(error) {
                 console.error(error);
             }, {
@@ -34,9 +34,9 @@
     <a href="load-wifi.jsp">Open API 와이파이 정보 가져오기</a>
 </h2>
     <form action="index.jsp" method="post">
-        <h3> LNT : </h3>
+        <h3> LNT :
         <input type= "text" id="lnt" name="lnt">
-        <h3> LAT : </h3>
+        LAT :
         <input type= "text" id="lat" name="lat">
         <input type="button" onclick = getLocation() value="내 위치 가져오기">
     <form action="wifi-list.jsp" method="get">
@@ -49,7 +49,7 @@
             })
         })"  value="근처 WIFI 정보 보기">
 
-    </form>
+    </form></h3>
 
 
     <table>

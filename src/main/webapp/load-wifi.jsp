@@ -2,8 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<style> body{
-    font-size: 40px;
+<style> h1{
+    font-size: 30px;
     font-weight: bold;
     width: 100%;
     text-align: center;
@@ -11,9 +11,11 @@
     <title>Title</title>
 </head>
 <body>
+<br>
     <h1><% ApiLoader dataGet = new ApiLoader(); %>
     <h1> <%=dataGet.apiGet()%>
-        개의 데이터가 로드 되었습니다.<br></h1>
-    <a href="index.jsp">메인페이지로 이동</a>
+        개의 WIFI 정보를 정상적으로 저장하였습니다.<br><br>
+        <input type="button" onclick="location.href ='index.jsp'" value="메인페이지로 이동">
+    </h1>
 </body>
 </html>

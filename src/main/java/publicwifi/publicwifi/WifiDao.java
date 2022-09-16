@@ -273,8 +273,8 @@ public class WifiDao {
                     String X_SWIFI_CNSTC_YEAR = rs.getString("X_SWIFI_CNSTC_YEAR");
                     String X_SWIFI_INOUT_DOOR = rs.getString("X_SWIFI_INOUT_DOOR");
                     String X_SWIFI_REMARS3 = rs.getString("X_SWIFI_REMARS3");
-                    String LAT = rs.getString("LAT");
-                    String LNT = rs.getString("LNT");
+                    String LAT = rs.getString("LNT");
+                    String LNT = rs.getString("LAT");
                     String WORK_DTTM = rs.getString("WORK_DTTM");
                     String Cnt_No = rs.getString("Count_Num");
                     String Distance = rs.getString("distance");
@@ -409,8 +409,8 @@ public class WifiDao {
 
 
                 ps = con.prepareStatement(sql);
-                ps.setString(1, lat);
-                ps.setString(2, lnt);
+                ps.setString(1, lnt);
+                ps.setString(2, lat);
 
                 ps.executeUpdate();
 
