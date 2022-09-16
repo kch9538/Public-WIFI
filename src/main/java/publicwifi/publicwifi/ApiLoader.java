@@ -14,6 +14,7 @@ import java.net.URLEncoder;
 
 public class ApiLoader {
 
+//  API 호출을 위한 메서드
 
     public static String apiGetter(Integer startNum, Integer endNum) {
         try {
@@ -51,9 +52,10 @@ public class ApiLoader {
         }
     }
 
+// 총 WIFI 갯수 구한 후 호출하는 메서드
+
     public static String apiGet() {
 
-//        System.out.println("========== PROCESSING ==========");
         WifiDao reset = new WifiDao();
         reset.clsDb();
         String amnt;
@@ -102,7 +104,6 @@ public class ApiLoader {
             throw new RuntimeException(e);
         }
 
-//        System.out.println("========== PROCESS DONE ==========");
         return amnt;
     }
 

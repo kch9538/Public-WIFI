@@ -1,7 +1,3 @@
-<%--<%@ page import="publicwifi.publicwifi.WifiDao" %>--%>
-<%--<%@ page import="publicwifi.publicwifi.WifiDto" %>--%>
-<%--<%@ page import="java.util.List" %>--%>
-<%--<%@ page import="java.text.DecimalFormat" %>--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -9,14 +5,13 @@
     <link href="style.css" rel="stylesheet" type="text/css">
     <title>와이파이 정보 구하기</title>
 </head>
-
 <body>
 <script = "javascript">
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                document.getElementById("lnt").value = position.coords.latitude;
-                document.getElementById("lat").value = position.coords.longitude;
+                document.getElementById("lat").value = position.coords.latitude;
+                document.getElementById("lnt").value = position.coords.longitude;
             }, function(error) {
                 console.error(error);
             }, {
@@ -28,7 +23,6 @@
             alert('현재환경은 위치정보를 지원하지 않습니다');
         }
     }
-    getLocation();
 </script>
 <h1>와이파이 정보 구하기
 </h1>
@@ -39,12 +33,12 @@
     <a> ㅣ</a>
     <a href="load-wifi.jsp">Open API 와이파이 정보 가져오기</a>
 </h2>
-<br/>
     <form action="index.jsp" method="post">
-        <input type= "text" id="lat" name="lat">
+        <h3> LNT : </h3>
         <input type= "text" id="lnt" name="lnt">
+        <h3> LAT : </h3>
+        <input type= "text" id="lat" name="lat">
         <input type="button" onclick = getLocation() value="내 위치 가져오기">
-
     <form action="wifi-list.jsp" method="get">
         <input type="button" id="load" onclick="
         fetch('wifi-list.jsp?lat='+document.getElementById('lat').value +'&lnt='+document.getElementById('lnt').value
@@ -56,6 +50,7 @@
         })"  value="근처 WIFI 정보 보기">
 
     </form>
+
 
     <table>
         <thead>

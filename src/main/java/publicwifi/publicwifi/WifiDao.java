@@ -6,6 +6,7 @@ import java.util.List;
 
 public class WifiDao {
 
+// TABLE 생성 전 존재 여부 확인 후 WIFILIST를 담는 TABLE 생성하는 메서드
     public void clsDb() {
 
         Connection con = null;
@@ -101,6 +102,8 @@ public class WifiDao {
         }
 
     }
+
+// TABLE에 WIFI 정보 넣는 메서드
     public void dataIn (WifiDto wifiLister){
             Connection con = null;
             PreparedStatement ps = null;
@@ -144,13 +147,6 @@ public class WifiDao {
 
                 ps.executeUpdate();
 
-//            if(affected > 0) {
-//                System.out.println("저장 성공");
-//            } else {
-//                System.out.println("저장 실패");
-//            }
-
-
                 ps.close();
                 con.close();
 
@@ -158,6 +154,8 @@ public class WifiDao {
                 e.printStackTrace();
             }
     }
+
+//  History 정보를 출력하는 메서드
     public List<WifiDto> HistoryOut () {
 
             List<WifiDto> wifiListTmp = new ArrayList<>();
@@ -201,23 +199,6 @@ public class WifiDao {
                     tempWifiDto.setView_Date(ViewDate);
 
                     wifiListTmp.add(tempWifiDto);
-//          ===========결과 확인 print=======
-//                System.out.println(X_SWIFI_MGR_NO + ", "
-//                        +X_SWIFI_WRDOFC + ", "
-//                        +X_SWIFI_MAIN_NM + ", "
-//                        +X_SWIFI_ADRES1 + ", "
-//                        +X_SWIFI_ADRES2 + ", "
-//                        +X_SWIFI_INSTL_FLOOR + ", "
-//                        +X_SWIFI_INSTL_TY + ", "
-//                        +X_SWIFI_INSTL_MBY + ", "
-//                        +X_SWIFI_SVC_SE + ", "
-//                        +X_SWIFI_CMCWR + ", "
-//                        +X_SWIFI_CNSTC_YEAR + ", "
-//                        +X_SWIFI_INOUT_DOOR + ", "
-//                        +X_SWIFI_REMARS3 + ", "
-//                        +LAT + ", "
-//                        +LNT + ", "
-//                        +WORK_DTTM + ", ");
                 }
 
                 ps.close();
@@ -229,6 +210,7 @@ public class WifiDao {
             return wifiListTmp;
         }
 
+//  좌표 정보를 이용하여 KM로 환산하여 구하고 WifiList를 출력하는 메서드
     public List<WifiDto> distanceGet (String lat, String lnt){
 
             List<WifiDto> wifiList = new ArrayList<>();
@@ -318,25 +300,6 @@ public class WifiDao {
                     tempWifiDto.setDistance(Distance);
 
                     wifiList.add(tempWifiDto);
-//
-//                System.out.println(X_SWIFI_MGR_NO + ", "
-//                        +X_SWIFI_WRDOFC + ", "
-//                        +X_SWIFI_MAIN_NM + ", "
-//                        +X_SWIFI_ADRES1 + ", "
-//                        +X_SWIFI_ADRES2 + ", "
-//                        +X_SWIFI_INSTL_FLOOR + ", "
-//                        +X_SWIFI_INSTL_TY + ", "
-//                        +X_SWIFI_INSTL_MBY + ", "
-//                        +X_SWIFI_SVC_SE + ", "
-//                        +X_SWIFI_CMCWR + ", "
-//                        +X_SWIFI_CNSTC_YEAR + ", "
-//                        +X_SWIFI_INOUT_DOOR + ", "
-//                        +X_SWIFI_REMARS3 + ", "
-//                        +LAT + ", "
-//                        +LNT + ", "
-//                        +WORK_DTTM + ", "
-//                        +Cnt_No + ", "
-//                        +Distance+ ", ");
                 }
 
                 ps.close();
@@ -347,6 +310,8 @@ public class WifiDao {
             }
             return wifiList;
         }
+
+// TABLE 생성 전 존재 여부 확인 후 History를 담는 TABLE 생성하는 메서드
     public void HistoryDb () {
 
             Connection con = null;
@@ -418,6 +383,8 @@ public class WifiDao {
             }
 
         }
+
+// TABLE에 History 정보 넣는 메서드
     public static void HistoryIn (String lat, String lnt){
             Connection con = null;
             PreparedStatement ps = null;
@@ -456,6 +423,7 @@ public class WifiDao {
             }
         }
 
+// 개별 Hisory를 삭제하는 메서드
     public static void HistoryDel (String a){
 
             Connection con = null;
@@ -494,42 +462,8 @@ public class WifiDao {
             }
 
         }
-    public static void HistoryDelAll () {
 
-            Connection con = null;
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-
-            String url = "jdbc:sqlite:identifier.sqlite";
-
-            try {
-                Class.forName("org.sqlite.JDBC");
-                con = DriverManager.getConnection(url);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-            try {
-
-
-                String sql = " DELETE FROM history ";
-
-
-                ps = con.prepareStatement(sql);
-
-                ps.executeUpdate();
-
-
-                ps.close();
-                con.close();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
+// TABLE이 존재하는지 확인하는 메서드
     private boolean emptyCheck(String table) {
 
         Connection con = null;
@@ -550,7 +484,6 @@ public class WifiDao {
         int CntNoTmp = 0;
         try {
 
-
             String sql = " SELECT COUNT(*) FROM sqlite_master WHERE Name = ? ; ";
 
             ps = con.prepareStatement(sql);
@@ -563,33 +496,6 @@ public class WifiDao {
             CntNoTmp = Integer.parseInt(CntNo);
             System.out.println(CntNoTmp);
 
-
-//                WifiDto tempWifiDto = new WifiDto();
-//                tempWifiDto.setCnt_No(CntNo);
-//                tempWifiDto.setLat(Lat);
-//                tempWifiDto.setLnt(Lnt);
-//                tempWifiDto.setView_Date(ViewDate);
-//
-//                wifiListTmp.add(tempWifiDto);
-//          ===========결과 확인 print=======
-//                System.out.println(X_SWIFI_MGR_NO + ", "
-//                        +X_SWIFI_WRDOFC + ", "
-//                        +X_SWIFI_MAIN_NM + ", "
-//                        +X_SWIFI_ADRES1 + ", "
-//                        +X_SWIFI_ADRES2 + ", "
-//                        +X_SWIFI_INSTL_FLOOR + ", "
-//                        +X_SWIFI_INSTL_TY + ", "
-//                        +X_SWIFI_INSTL_MBY + ", "
-//                        +X_SWIFI_SVC_SE + ", "
-//                        +X_SWIFI_CMCWR + ", "
-//                        +X_SWIFI_CNSTC_YEAR + ", "
-//                        +X_SWIFI_INOUT_DOOR + ", "
-//                        +X_SWIFI_REMARS3 + ", "
-//                        +LAT + ", "
-//                        +LNT + ", "
-//                        +WORK_DTTM + ", ");
-//            }
-
             ps.close();
             con.close();
 
@@ -597,11 +503,7 @@ public class WifiDao {
             e.printStackTrace();
         }
 
-        if (CntNoTmp > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return CntNoTmp > 0;
     }
 }
 
